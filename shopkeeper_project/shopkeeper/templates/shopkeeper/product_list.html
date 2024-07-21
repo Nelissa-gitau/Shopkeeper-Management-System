@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Product List</title>
+    <style>
+        /* Global Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f2f5;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            color: #0056b3;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        nav {
+            background-color: #003d7a;
+            padding: 10px 0;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            text-align: center;
+            margin: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+
+        nav ul li a {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        nav ul li a:hover {
+            text-decoration: underline;
+        }
+
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background-color: #ffffff;
+            border-radius: 4px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #0056b3;
+            color: #ffffff;
+            padding: 10px;
+        }
+
+        td {
+            padding: 10px;
+            text-align: center;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        a {
+            color: #0056b3;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .stats {
+            margin: 20px 0;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 4px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .stats h2 {
+            color: #0056b3;
+            margin-top: 0;
+        }
+
+        .stats p {
+            font-size: 16px;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="{% url 'add_product' %}">Add New Product</a></li>
+            <li><a href="{% url 'home' %}">Home</a></li>
+        </ul>
+    </nav>
+    <div class="container">
+        <h1>Product List</h1>
+
+        <!-- Statistics Section -->
+        <div class="stats">
+            <h2>Product Statistics</h2>
+            <p><strong>Total Number of Products:</strong> {{ total_products }}</p>
+            <p><strong>Average Selling Price:</strong> ${{ avg_selling_price }}</p>
+            <p><strong>Average Buying Price:</strong> ${{ avg_buying_price }}</p>
+            <p><strong>Highest Selling Price:</strong> ${{ highest_selling_price }}</p>
+            <p><strong>Lowest Selling Price:</strong> ${{ lowest_selling_price }}</p>
+            <p><strong>Highest Buying Price:</strong> ${{ highest_buying_price }}</p>
+            <p><strong>Lowest Buying Price:</strong> ${{ lowest_buying_price }}</p>
+        </div>
+
+        <!-- Product Table -->
+        <table>
+            <thead>
+                <tr>
+                    <th>Product Number</th>
+                    <th>Name</th>
+                    <th>Selling Price</th>
+                    <th>Buying Price</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for product in products %}
+                    <tr>
+                        <td>{{ product.product_number }}</td>
+                        <td>{{ product.name }}</td>
+                        <td>{{ product.selling_price }}</td>
+                        <td>{{ product.buying_price }}</td>
+                        <td>
+                            <a href="{% url 'update_product' product.product_number %}">Edit</a> |
+                            <a href="{% url 'delete_product' product.product_number %}">Delete</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
