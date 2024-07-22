@@ -25,7 +25,7 @@ The **Shopkeeper Management System** is a web application designed to help shopk
 
 1. **Clone the repository**:
     ```bash
-    git clone https://github.com/TheODDYSEY/shopkeeper-management-system.git
+    git clone https://github.com/Nelissa-gitau/Shopkeeper-Management-System
     cd shopkeeper-management-system
     ```
 
